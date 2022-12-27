@@ -131,6 +131,7 @@ mod history;
 mod line;
 mod line_parser;
 mod search;
+mod state;
 #[cfg(not(tarpaulin_include))]
 pub mod testutil;
 mod todo_file_options;
@@ -143,6 +144,7 @@ use std::{
 	slice::Iter,
 };
 
+use state::detect_state;
 pub use version_track::Version;
 
 pub use self::{
@@ -150,6 +152,7 @@ pub use self::{
 	edit_content::EditContext,
 	line::Line,
 	search::Search,
+	state::State,
 	todo_file_options::TodoFileOptions,
 };
 use self::{
@@ -171,6 +174,7 @@ pub struct TodoFile {
 	options: TodoFileOptions,
 	selected_line_index: usize,
 	version: Version,
+	state: State,
 }
 
 impl TodoFile {
@@ -188,6 +192,7 @@ impl TodoFile {
 			options,
 			selected_line_index: 0,
 			version: Version::new(),
+			state: State::Initial,
 		}
 	}
 
@@ -238,6 +243,7 @@ impl TodoFile {
 			})
 			.collect();
 		self.set_lines(lines?);
+		self.state = detect_state(&self.filepath)?;
 		Ok(())
 	}
 
@@ -455,6 +461,13 @@ impl TodoFile {
 	#[inline]
 	pub const fn version(&self) -> &Version {
 		&self.version
+	}
+
+	/// Get the current state
+	#[must_use]
+	#[inline]
+	pub const fn state(&self) -> &State {
+		&self.state
 	}
 
 	/// Get the selected line.
