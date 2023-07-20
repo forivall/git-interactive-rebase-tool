@@ -2,7 +2,7 @@ use std::sync::Arc;
 
 use input::InputOptions;
 use parking_lot::Mutex;
-use todo_file::TodoFile;
+use todo_file::{TodoFile, State as TodoFileState};
 use view::{RenderContext, ViewData};
 
 use crate::{
@@ -35,7 +35,10 @@ impl Module for ConfirmAbort {
 		let mut results = Results::new();
 		match confirmed {
 			Confirmed::Yes => {
-				self.todo_file.lock().set_lines(vec![]);
+				let todo_state = self.todo_file.lock().state().clone();
+				if todo_state != TodoFileState::Edit {
+					self.todo_file.lock().set_lines(vec![]);
+				}
 				results.exit_status(ExitStatus::Good);
 			},
 			Confirmed::No => {
@@ -130,6 +133,26 @@ mod tests {
 					test_context.handle_event(&mut module),
 					Artifact::Event(Event::from(KeyCode::Null))
 				);
+			},
+		);
+	}
+
+	#[test]
+	fn handle_event_yes_in_edit() {
+		module_test(
+			&["pick aaa comment"],
+			&[Event::from(MetaEvent::Yes)],
+			|mut test_context| {
+				let mut todo_file = test_context.take_todo_file();
+				todo_file.set_state(TodoFileState::Edit);
+
+				let mut module = create_confirm_abort(todo_file);
+				assert_results!(
+					test_context.handle_event(&mut module),
+					Artifact::Event(Event::from(MetaEvent::Yes)),
+					Artifact::ExitStatus(ExitStatus::Good)
+				);
+				assert!(!module.todo_file.lock().is_empty());
 			},
 		);
 	}
