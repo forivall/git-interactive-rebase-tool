@@ -213,6 +213,12 @@ impl TodoFile {
 		self.history.reset();
 	}
 
+	/// Set the rebase todo file state.
+	#[inline]
+	pub fn set_state(&mut self, state: State) {
+		self.state = state;
+	}
+
 	/// Load the rebase file from disk.
 	///
 	/// # Errors
@@ -243,7 +249,7 @@ impl TodoFile {
 			})
 			.collect();
 		self.set_lines(lines?);
-		self.state = detect_state(&self.filepath)?;
+		self.set_state(detect_state(&self.filepath)?);
 		Ok(())
 	}
 
