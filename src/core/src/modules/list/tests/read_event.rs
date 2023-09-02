@@ -49,6 +49,7 @@ fn search() {
 #[case::actionpick('p', MetaEvent::ActionPick)]
 #[case::actionreword('r', MetaEvent::ActionReword)]
 #[case::actionsquash('s', MetaEvent::ActionSquash)]
+#[case::actionindex('i', MetaEvent::ActionIndex)]
 #[case::edit('E', MetaEvent::Edit)]
 #[case::forceabort('Q', MetaEvent::ForceAbort)]
 #[case::forcerebase('W', MetaEvent::ForceRebase)]

@@ -40,6 +40,7 @@ impl Search {
 					Action::Drop
 					| Action::Edit
 					| Action::Fixup
+					| Action::Index
 					| Action::Pick
 					| Action::Reword
 					| Action::Squash

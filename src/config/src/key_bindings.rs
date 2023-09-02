@@ -25,6 +25,8 @@ pub struct KeyBindings {
 	pub action_edit: Vec<String>,
 	/// Key bindings for the fixup action.
 	pub action_fixup: Vec<String>,
+	/// Key bindings for the index action.
+	pub action_index: Vec<String>,
 	/// Key bindings for the pick action.
 	pub action_pick: Vec<String>,
 	/// Key bindings for the reword action.
@@ -136,6 +138,7 @@ impl KeyBindings {
 			action_drop: get_input(git_config, "interactive-rebase-tool.inputActionDrop", "d")?,
 			action_edit: get_input(git_config, "interactive-rebase-tool.inputActionEdit", "e")?,
 			action_fixup: get_input(git_config, "interactive-rebase-tool.inputActionFixup", "f")?,
+			action_index: get_input(git_config, "interactive-rebase-tool.inputActionIndex", "i")?,
 			action_pick: get_input(git_config, "interactive-rebase-tool.inputActionPick", "p")?,
 			action_reword: get_input(git_config, "interactive-rebase-tool.inputActionReword", "r")?,
 			action_squash: get_input(git_config, "interactive-rebase-tool.inputActionSquash", "s")?,
@@ -256,6 +259,7 @@ mod tests {
 		config_test!(action_drop, "inputActionDrop", "d");
 		config_test!(action_edit, "inputActionEdit", "e");
 		config_test!(action_fixup, "inputActionFixup", "f");
+		config_test!(action_index, "inputActionIndex", "i");
 		config_test!(action_pick, "inputActionPick", "p");
 		config_test!(action_reword, "inputActionReword", "r");
 		config_test!(action_squash, "inputActionSquash", "s");

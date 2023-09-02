@@ -18,6 +18,8 @@ pub(crate) enum MetaEvent {
 	ActionEdit,
 	/// The fixup action meta event.
 	ActionFixup,
+	/// The index (git-revise) action meta event.
+	ActionIndex,
 	/// The pick action meta event.
 	ActionPick,
 	/// The reword action meta event.

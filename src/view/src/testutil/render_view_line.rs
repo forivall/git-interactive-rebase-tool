@@ -83,6 +83,7 @@ pub(crate) fn render_style(line_segment: &LineSegment) -> String {
 		DisplayColor::DiffWhitespaceColor => String::from("DiffWhitespaceColor"),
 		DisplayColor::IndicatorColor => String::from("IndicatorColor"),
 		DisplayColor::Normal => String::from("Normal"),
+		DisplayColor::ActionIndex => String::from("ActionIndex"),
 		DisplayColor::ActionLabel => String::from("ActionLabel"),
 		DisplayColor::ActionReset => String::from("ActionReset"),
 		DisplayColor::ActionMerge => String::from("ActionMerge"),

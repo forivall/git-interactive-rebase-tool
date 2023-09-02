@@ -21,6 +21,8 @@ pub(crate) struct AppKeyBindings {
 	pub(crate) action_edit: Vec<Event>,
 	/// Key bindings for the fixup action.
 	pub(crate) action_fixup: Vec<Event>,
+	/// Key bindings for the index action.
+	pub(crate) action_index: Vec<Event>,
 	/// Key bindings for the pick action.
 	pub(crate) action_pick: Vec<Event>,
 	/// Key bindings for the reword action.
@@ -84,6 +86,7 @@ impl CustomKeybinding for AppKeyBindings {
 			action_drop: map_keybindings(&key_bindings.action_drop),
 			action_edit: map_keybindings(&key_bindings.action_edit),
 			action_fixup: map_keybindings(&key_bindings.action_fixup),
+			action_index: map_keybindings(&key_bindings.action_index),
 			action_pick: map_keybindings(&key_bindings.action_pick),
 			action_reword: map_keybindings(&key_bindings.action_reword),
 			action_squash: map_keybindings(&key_bindings.action_squash),

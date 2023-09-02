@@ -13,6 +13,7 @@ pub(crate) fn create_test_custom_keybindings() -> AppKeyBindings {
 		action_drop: vec![Event::from(KeyCode::Char('d'))],
 		action_edit: vec![Event::from(KeyCode::Char('e'))],
 		action_fixup: vec![Event::from(KeyCode::Char('f'))],
+		action_index: vec![Event::from(KeyCode::Char('i'))],
 		action_pick: vec![Event::from(KeyCode::Char('p'))],
 		action_reword: vec![Event::from(KeyCode::Char('r'))],
 		action_squash: vec![Event::from(KeyCode::Char('s'))],
