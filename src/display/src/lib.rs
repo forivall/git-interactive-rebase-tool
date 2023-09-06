@@ -174,6 +174,7 @@ pub use self::{
 #[derive(Debug)]
 pub struct Display<T: Tui> {
 	action_break: (Colors, Colors),
+	action_cut: (Colors, Colors),
 	action_drop: (Colors, Colors),
 	action_edit: (Colors, Colors),
 	action_exec: (Colors, Colors),
@@ -216,6 +217,12 @@ impl<T: Tui> Display<T> {
 		let action_break = register_selectable_color_pairs(
 			color_mode,
 			theme.color_action_break,
+			theme.color_background,
+			theme.color_selected_background,
+		);
+		let action_cut = register_selectable_color_pairs(
+			color_mode,
+			theme.color_action_cut,
 			theme.color_background,
 			theme.color_selected_background,
 		);
@@ -324,6 +331,7 @@ impl<T: Tui> Display<T> {
 
 		Self {
 			action_break,
+			action_cut,
 			action_drop,
 			action_edit,
 			action_exec,
@@ -389,6 +397,7 @@ impl<T: Tui> Display<T> {
 			if selected {
 				match color {
 					DisplayColor::ActionBreak => self.action_break.1,
+					DisplayColor::ActionCut => self.action_cut.1,
 					DisplayColor::ActionDrop => self.action_drop.1,
 					DisplayColor::ActionEdit => self.action_edit.1,
 					DisplayColor::ActionExec => self.action_exec.1,
@@ -413,6 +422,7 @@ impl<T: Tui> Display<T> {
 			else {
 				match color {
 					DisplayColor::ActionBreak => self.action_break.0,
+					DisplayColor::ActionCut => self.action_cut.0,
 					DisplayColor::ActionDrop => self.action_drop.0,
 					DisplayColor::ActionEdit => self.action_edit.0,
 					DisplayColor::ActionExec => self.action_exec.0,

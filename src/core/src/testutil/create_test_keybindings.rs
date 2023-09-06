@@ -10,6 +10,7 @@ pub(crate) fn create_test_custom_keybindings() -> AppKeyBindings {
 	AppKeyBindings {
 		abort: vec![Event::from(KeyCode::Char('q'))],
 		action_break: vec![Event::from(KeyCode::Char('b'))],
+		action_cut: vec![Event::from(KeyCode::Char('x'))],
 		action_drop: vec![Event::from(KeyCode::Char('d'))],
 		action_edit: vec![Event::from(KeyCode::Char('e'))],
 		action_fixup: vec![Event::from(KeyCode::Char('f'))],

@@ -37,7 +37,8 @@ impl Search {
 			for (i, line) in rebase_todo.lines_iter().enumerate() {
 				match *line.get_action() {
 					Action::Break | Action::Noop => continue,
-					Action::Drop
+					Action::Cut
+					| Action::Drop
 					| Action::Edit
 					| Action::Fixup
 					| Action::Index

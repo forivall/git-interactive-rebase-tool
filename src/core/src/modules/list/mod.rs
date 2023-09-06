@@ -517,6 +517,7 @@ impl List {
 		match event {
 			e if key_bindings.custom.abort.contains(&e) => Event::from(MetaEvent::Abort),
 			e if key_bindings.custom.action_break.contains(&e) => Event::from(MetaEvent::ActionBreak),
+			e if key_bindings.custom.action_cut.contains(&e) => Event::from(MetaEvent::ActionCut),
 			e if key_bindings.custom.action_drop.contains(&e) => Event::from(MetaEvent::ActionDrop),
 			e if key_bindings.custom.action_edit.contains(&e) => Event::from(MetaEvent::ActionEdit),
 			e if key_bindings.custom.action_fixup.contains(&e) => Event::from(MetaEvent::ActionFixup),
@@ -606,6 +607,7 @@ impl List {
 			Event::MetaEvent(meta_event) => {
 				match meta_event {
 					MetaEvent::Abort => self.abort(&mut results),
+					MetaEvent::ActionCut => self.set_selected_line_action(Action::Cut),
 					MetaEvent::ActionDrop => self.set_selected_line_action(Action::Drop),
 					MetaEvent::ActionEdit => self.set_selected_line_action(Action::Edit),
 					MetaEvent::ActionFixup => self.set_selected_line_action(Action::Fixup),

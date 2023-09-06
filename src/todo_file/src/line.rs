@@ -102,7 +102,7 @@ impl Line {
 		Ok(match action {
 			Action::Noop => Self::new_noop(),
 			Action::Break => Self::new_break(),
-			Action::Pick | Action::Reword | Action::Edit | Action::Squash | Action::Drop | Action::Index => {
+			Action::Pick | Action::Reword | Action::Edit | Action::Squash | Action::Drop | Action::Cut | Action::Index => {
 				Self::new(action, line_parser.next()?, line_parser.take_remaining(), None)
 			},
 			Action::Fixup => {
@@ -209,6 +209,7 @@ impl Line {
 		match self.action {
 			Action::Exec | Action::Index | Action::Label | Action::Reset | Action::Merge | Action::UpdateRef => true,
 			Action::Break
+			| Action::Cut
 			| Action::Drop
 			| Action::Edit
 			| Action::Fixup
@@ -231,7 +232,7 @@ impl Line {
 	#[inline]
 	pub fn to_text(&self) -> String {
 		match self.action {
-			Action::Drop | Action::Edit | Action::Fixup | Action::Index | Action::Pick | Action::Reword | Action::Squash => {
+			Action::Cut | Action::Drop | Action::Edit | Action::Fixup | Action::Index | Action::Pick | Action::Reword | Action::Squash => {
 				if let Some(opt) = self.option.as_ref() {
 					format!("{} {opt} {} {}", self.action, self.hash, self.content)
 				}

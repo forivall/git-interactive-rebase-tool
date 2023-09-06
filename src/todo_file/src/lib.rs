@@ -279,7 +279,8 @@ impl TodoFile {
 
 							match *action {
 								Action::Break | Action::Noop => {},
-								Action::Drop
+								Action::Cut
+								| Action::Drop
 								| Action::Fixup
 								| Action::Edit
 								| Action::Index
